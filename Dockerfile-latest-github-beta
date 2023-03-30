@@ -1,11 +1,8 @@
-#FROM clojure:tools-deps-1.10.1.727-slim-buster AS builder
-#FROM clojure:tools-deps-1.11.1.1257 AS builder
 FROM clojure AS builder
 
 RUN apt-get update
 RUN apt-get upgrade --yes
 RUN apt-get install -y curl
-#RUN apt-get install software-properties-common
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y git
 RUN apt-get install -y zip
@@ -22,7 +19,7 @@ WORKDIR /usr/src/fluree-ledger
 
 
 COPY git_clone_fluree_latest.py /usr/src/git_clone_fluree_latest.py
-RUN ../git_clone_fluree_latest.py
+RUN ../git_clone_fluree_latest.py beta
 COPY fluree_version_patch.py /usr/src/fluree-ledger
 RUN python3 ./fluree_version_patch.py
 RUN clojure -A:test -Stree
@@ -51,7 +48,7 @@ RUN apt-get update && \
     # Unzip the fluree zip file and remove the zip.
     cd /usr/src && \
     unzip fluree-*.zip -d fsst/ && \
-    python3 /usr/src/fsst/git_info_fluree_latest.py >> VERSION && \
+    python3 /usr/src/fsst/git_info_fluree_latest.py beta >> VERSION && \
     rm fluree-*.zip && \
     # Remove stuff we no longer need.
     apt autoremove --yes && \
