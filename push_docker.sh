@@ -1,6 +1,9 @@
 #!/bin/bash
-echo Pushing stable-broken
-docker push pibara/fsst:stable-broken
+echo Pushing stable
+docker push pibara/fsst:stable
+docker push pibara/fsst:`python3 git_info_fluree_latest.py | sed -e 's/\r//'`
+docker push pibara/fsst:v`python3 -m pip index versions fsst|grep fsst |sed -e 's/.*(//' -e 's/).*//'`-`python3 git_info_fluree_latest.py | sed -e 's/\r//'`
+docker push pibara/fsst:v`python3 -m pip index versions fsst|grep fsst |sed -e 's/.*(//' -e 's/).*//'`-stable
 echo Pushing v1
 docker push pibara/fsst:v1
 docker push pibara/fsst:v`python3 -m pip index versions fsst|grep fsst |sed -e 's/.*(//' -e 's/).*//'`-v1
