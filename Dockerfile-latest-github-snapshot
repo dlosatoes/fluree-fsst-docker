@@ -9,10 +9,11 @@ RUN apt-get install -y zip
 RUN mkdir -p /usr/share/man/man1
 RUN apt-get install -y maven
 RUN apt-get install -y nodejs
+RUN apt-get install -y npm
 RUN apt-get update; apt-get install -y python3-pip
-RUN python3 -m pip install requests
-RUN python3 -m pip install pyparsing
-RUN python3 -m pip install fsst
+RUN python3 -m pip install requests --break-system-packages
+RUN python3 -m pip install pyparsing --break-system-packages
+RUN python3 -m pip install fsst --break-system-packages
 
 RUN mkdir -p /usr/src/fluree-ledger
 WORKDIR /usr/src/fluree-ledger
