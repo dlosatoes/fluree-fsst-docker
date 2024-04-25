@@ -33,7 +33,7 @@ make_docker_fluree.sh
 and to push the built images:
 
 ```
-make_docker.sh
+push_docker_fluree.sh
 ```
 
 # Future: smarter fsst
