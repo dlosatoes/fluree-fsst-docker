@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import sys
 import requests
-import subprocess
 r = requests.get("https://hub.docker.com/v2/repositories/fluree/ledger/tags")
 for candidate in r.json()["results"]:
     if candidate["name"] == "latest":

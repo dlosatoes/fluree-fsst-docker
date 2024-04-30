@@ -1,0 +1,12 @@
+FROM fluree/ledger:2.0.3
+USER root
+COPY openssl.cnf /usr/lib/ssl/openssl.cnf
+RUN ln -s /opt/fluree /usr/src/fsst
+RUN apt-get update
+RUN apt-get install python3 -y
+RUN apt-get install python3-pip -y
+RUN python3 -m pip install requests
+RUN python3 -m pip install fsst[domainapi]
+USER fluree
+ENTRYPOINT []
+CMD ["./fluree_start.sh"]
