@@ -1,5 +1,5 @@
 USER root
-COPY openssl.cnf /usr/lib/ssl/openssl.cnf
+# COPY openssl.cnf /usr/lib/ssl/openssl.cnf
 RUN ln -s /opt/fluree /usr/src/fsst
 RUN apt-get update
 RUN apt-get install python3 -y
